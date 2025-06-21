@@ -81,6 +81,16 @@ app.post("/register", upload.single("file"), async (req, res) => {
   // res.render("register.ejs", { url: cloudinaryResponse.secure_url });
 });
 
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  let user = await User.findOne({ email, password });
+  if (!user) {
+    res.render("login.ejs", { url: null });
+    return res.status(400).send("Invalid email or password");
+  } else {
+    res.render("profile.ejs", { user });
+  }
+});
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

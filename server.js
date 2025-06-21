@@ -28,7 +28,7 @@ mongoose
 
 // Rendering ejs template
 app.get("/", (req, res) => {
-  res.render("register.ejs", { url: null });
+  res.render("login.ejs", { url: null });
 });
 
 // Multer storage config
@@ -49,7 +49,7 @@ const imageSchema = new mongoose.Schema({
 const File = mongoose.model("cloudinary", imageSchema);
 
 // Upload endpoint
-app.post("/upload", upload.single("file"), async (req, res) => {
+app.post("/register", upload.single("file"), async (req, res) => {
   const file = req.file.path;
   const cloudinaryResponse = await cloudinary.uploader.upload(file, {
     folder: "Nodejs101",
@@ -59,7 +59,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     public_id: cloudinaryResponse.public_id,
     imgUrl: cloudinaryResponse.secure_url,
   });
-  res.render("index.ejs", { url: cloudinaryResponse.secure_url });
+  res.render("register.ejs", { url: cloudinaryResponse.secure_url });
 });
 
 app.listen(PORT, () => {

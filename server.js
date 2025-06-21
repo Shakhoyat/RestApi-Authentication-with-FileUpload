@@ -7,6 +7,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
+// Middleware to parse JSON and URL-encoded data
+app.use(express.urlencoded({ extended: true }));
+
 const PORT = process.env.PORT || 3000;
 
 // Configure Cloudinary

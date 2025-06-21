@@ -63,9 +63,6 @@ app.post("/register", upload.single("file"), async (req, res) => {
   const filePath = req.file.path;
   const { name, email, password } = req.body;
 
-  if (!name || !email || !password) {
-    return res.status(400).send("All fields are required");
-  }
   const cloudinaryResponse = await cloudinary.uploader.upload(filePath, {
     folder: "Nodejs101",
   });

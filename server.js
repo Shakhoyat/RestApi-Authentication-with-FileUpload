@@ -28,7 +28,7 @@ mongoose
 
 // Rendering ejs template
 app.get("/", (req, res) => {
-  res.render("index.ejs", { url: null });
+  res.render("register.ejs", { url: null });
 });
 
 // Multer storage config
